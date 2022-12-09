@@ -1,0 +1,285 @@
+{Functions}
+Anweisung gl_processField_With_Mark
+  wenn IstZiegel(1) dann
+    Schritt
+    MarkeLöschen
+    MarkeSetzen(grün)
+    LinksDrehen
+    LinksDrehen
+    Schritt
+    LinksDrehen
+    LinksDrehen
+  sonst
+    wenn NichtIstZiegel dann
+      Schritt
+      MarkeLöschen
+      MarkeSetzen(grün)
+      LinksDrehen
+      LinksDrehen
+      Schritt
+      LinksDrehen
+      LinksDrehen
+    sonst 
+      wenn IstZiegel(2) dann
+        
+      sonst
+        wenn IstZiegel(3) dann
+          
+        sonst
+          Schritt
+          MarkeLöschen
+          MarkeSetzen(grün)
+          LinksDrehen
+          LinksDrehen
+          Schritt
+          LinksDrehen
+          LinksDrehen
+        endewenn
+      endewenn
+    endewenn
+  endewenn
+endeAnweisung
+Anweisung gl_processField_WithOut_Mark
+  wenn IstZiegel(3) dann
+    Schritt
+    MarkeLöschen
+    MarkeSetzen(gelb)
+    LinksDrehen
+    LinksDrehen
+    Schritt
+    LinksDrehen
+    LinksDrehen
+  endewenn
+endeAnweisung
+
+Anweisung gl_removeBricks
+  wiederhole solange IstZiegel
+    Aufheben
+  endewiederhole
+endeAnweisung
+
+Anweisung gl_resultField
+  wenn IstWand dann
+    wenn IstMarke(gelb) dann
+      LinksDrehen
+      LinksDrehen
+      Schritt
+      LinksDrehen
+      LinksDrehen
+      gl_processField_With_Mark
+      gl_removeBricks
+      Schritt  
+    sonst
+      LinksDrehen
+      LinksDrehen
+      Schritt
+      LinksDrehen
+      LinksDrehen
+      gl_processField_WithOut_Mark
+      gl_removeBricks
+      Schritt  
+    endewenn
+  sonst
+    wenn IstMarke(gelb) dann
+      Schritt
+      LinksDrehen
+      LinksDrehen
+      gl_processField_With_Mark
+      gl_removeBricks
+      Schritt
+      LinksDrehen
+      LinksDrehen
+    sonst
+      Schritt
+      LinksDrehen
+      LinksDrehen
+      gl_processField_WithOut_Mark
+      gl_removeBricks
+      Schritt
+      LinksDrehen
+      LinksDrehen
+    endewenn
+  endewenn
+endeAnweisung
+
+
+
+Anweisung gl_checkField
+  wenn IstMarke(gelb) dann
+    wiederhole 4  mal
+      wenn NichtIstWand dann
+        Hinlegen
+        Schritt
+        LinksDrehen
+        wenn NichtIstWand dann
+          Hinlegen
+        endewenn
+        LinksDrehen
+        Schritt
+        LinksDrehen
+        LinksDrehen
+      endewenn
+      LinksDrehen
+    endewiederhole
+  endewenn
+endeAnweisung
+
+
+Anweisung gl_startfield
+  wenn NichtIstMarke dann
+    MarkeSetzen(grün)
+  sonst
+    MarkeLöschen
+    MarkeSetzen(gelb)
+
+  endewenn
+  
+endeAnweisung
+
+Anweisung gl_loop_check
+  wiederhole solange NichtIstWand
+    LinksDrehen
+    wenn IstWand dann
+      RechtsDrehen
+      gl_checkField
+      Schritt
+      RechtsDrehen
+    sonst
+      RechtsDrehen
+    endewenn
+    wiederhole solange NichtIstWand
+      gl_checkField
+      Schritt
+    endewiederhole
+    LinksDrehen
+    wenn NichtIstWand dann
+      gl_checkField
+      Schritt
+      LinksDrehen
+      wiederhole solange NichtIstWand
+        gl_checkField
+        Schritt
+      endewiederhole
+      RechtsDrehen
+    sonst
+      LinksDrehen
+      wiederhole solange NichtIstWand
+        Schritt
+      endewiederhole
+      RechtsDrehen
+    endewenn
+  endewiederhole
+  gl_checkField
+  RechtsDrehen
+  RechtsDrehen
+  wiederhole solange NichtIstWand
+    Schritt
+  endewiederhole
+  LinksDrehen
+endeAnweisung
+
+Anweisung gl_loop_result
+  wiederhole solange NichtIstWand
+    LinksDrehen
+    wenn IstWand dann
+      RechtsDrehen
+      gl_resultField
+      Schritt
+      RechtsDrehen
+    sonst
+      RechtsDrehen
+    endewenn
+    wiederhole solange NichtIstWand
+      gl_resultField
+      Schritt
+    endewiederhole
+    LinksDrehen
+    wenn NichtIstWand dann
+      gl_resultField
+      Schritt
+      LinksDrehen
+      wiederhole solange NichtIstWand
+        gl_resultField
+        Schritt
+      endewiederhole
+      RechtsDrehen
+    sonst
+      LinksDrehen
+      wiederhole solange NichtIstWand
+        Schritt
+      endewiederhole
+      RechtsDrehen
+    endewenn
+  endewiederhole
+  gl_resultField
+  RechtsDrehen
+  RechtsDrehen
+  wiederhole solange NichtIstWand
+    Schritt
+  endewiederhole
+  LinksDrehen
+endeAnweisung
+
+Anweisung gl_start_fill
+  wiederhole solange NichtIstWand
+    LinksDrehen
+    wenn IstWand dann
+      RechtsDrehen
+      gl_startfield
+      Schritt
+      RechtsDrehen
+    sonst
+      RechtsDrehen
+    endewenn
+    wiederhole solange NichtIstWand
+      gl_startfield
+      Schritt
+    endewiederhole
+    LinksDrehen
+    wenn NichtIstWand dann
+      gl_startfield
+      Schritt
+      LinksDrehen
+      wiederhole solange NichtIstWand
+        gl_startfield
+        Schritt
+      endewiederhole
+      RechtsDrehen
+    sonst
+      LinksDrehen
+      wiederhole solange NichtIstWand
+        Schritt
+      endewiederhole
+      RechtsDrehen
+    endewenn
+  endewiederhole
+  gl_startfield
+  RechtsDrehen
+  RechtsDrehen
+  wiederhole solange NichtIstWand
+    Schritt
+  endewiederhole
+  LinksDrehen
+endeAnweisung
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{main}
+gl_start_fill
+wiederhole immer
+  gl_loop_check
+  gl_loop_result
+  warten(100)
+endewiederhole
+
