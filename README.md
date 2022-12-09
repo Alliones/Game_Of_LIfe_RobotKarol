@@ -1,2 +1,2 @@
-# Game_Of_LIfe_RobotKarol
- Game of LIfe in Robot Karol
+# Game of Life RobotKarol
+ Game of Life in Robot Karol
